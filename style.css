@@ -16,6 +16,7 @@ h1, h3 {
     flex-direction: row;
     align-content: center;
     justify-content: center;
+    margin-bottom: 20px;
 
 }
 .rock, .paper, .scissors {
@@ -73,7 +74,7 @@ h1, h3 {
     width: 640px;
     display: flex;
     align-content: center;
-    justify-content: center;
+    justify-content: space-between;
     margin: auto;
 }
 #fight_container img {
@@ -81,7 +82,7 @@ h1, h3 {
 }
 #my_play {
     position: relative;
-    left: 60px;
+    left: 0px;
     align-content: flex-start;
     width: 120px;
     overflow: hidden;
@@ -107,7 +108,7 @@ h1, h3 {
     height: 120px;
     width: 120px;
     background-color: white;
-    opacity: .5;
+    opacity: 1;
 }
 #comp_overlay {
     position: absolute;
@@ -116,13 +117,14 @@ h1, h3 {
     height: 120px;
     width: 120px;
     background-color: white;
-    opacity: .5;
+    opacity: 1;
 }
 #narration {
-    width: 400px;
+    width: 120px;
+    border-radius: 60px;
     text-align: center;
     line-height: 120px;
-    font-size: 50px;
+    font-size: 30px;
 
 }
 

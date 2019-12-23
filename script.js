@@ -26,7 +26,8 @@ adds tally to computer or yourself (global variables?)
 */
 var myWins = 0;
 var compWins = 0;
-
+var result = 10;
+var resultMessage = 0;
 
 
 $('.rock').click(play_rock);
@@ -88,6 +89,19 @@ function addScore(result) {
             break;
     }
 }
+function generateResultMessage(result) {
+    switch (result) {
+        case -1:
+            return "You Win"
+            break;
+        case 0:
+            return "Tie"
+            break;
+        case 1:
+            return "You Lost"
+            break;
+    }
+}
 
 function fightPosition(move) {
     if (move === 0) {
@@ -98,10 +112,18 @@ function fightPosition(move) {
         return -248
     }
 }
-function animateResults(myWins,compWins,result,myMove,computerMove) {
+function updateResults(myWins,compWins,myMove,computerMove) {
     var myPos = fightPosition(myMove);
     var compPos = fightPosition(computerMove);
 
+    $('#my_play > img').css('left',myPos + 'px');
+    $('#comp_play > img').css('left',compPos + 'px');
+}
+function animateResults() {
+    setTimeout(displayMyMove,100);
+    setTimeout(displayCompMove,1500);
+    setTimeout(animateTie,3000);
+    /*
     switch (result) {
         case -1:
             animateMyWin();
@@ -113,27 +135,46 @@ function animateResults(myWins,compWins,result,myMove,computerMove) {
             animateCompWin();
             break;
     }
-
-
-    $('#my_play > img').animate({'left':myPos + 'px'},0);
-    $('#comp_play > img').animate({'left':compPos + 'px'},0);
-    $('#my_overlay,#comp_overlay').animate({'opacity':0},1000,
-        function(){$('#my_play').animate({'left':0},500, 
-            function(){$('#my_play').animate({'left':100 + 'px'},500)}
-        )}
-    );
-    $('#narration > span').html('insert somethinggg');
-    $('#my_score').html(myWins);
-    $('#computer_score').html(compWins);
+    */
+       //figure out how to update score after animation
+       $('#my_score').html(myWins);
+       $('#computer_score').html(compWins);
+    setTimeout(resetGame,6000);
 }
-function animateMyWin(){} 
-function animateTie(){}
-function animateCompWin(){}
-
+function animateMyWin() {};
+function animateTie() {
+    $('#my_play').animate({'left':200 + 'px'},1000,
+        function(){$('#my_play').animate({'left':0 + 'px'},1000)}
+    );
+    $('#comp_play').animate({'left':-200 + 'px'},1000,
+        function(){$('#comp_play').animate({'left':0 + 'px'},1000)}
+    );
+    setTimeout(displayResultMessage,2000);
+}
+function animateCompWin() {};
+function displayResultMessage() {
+    $('#narration > span').html(resultMessage);
+    $('#narration').css('background-color','turquoise')
+}
+function displayTryAgainMessage(){
+    $('#narration > span').html('Play again pls');
+}
+function displayMyMove() {
+    $('#my_overlay').animate({'opacity':0},1000);
+}
+function displayCompMove() {
+    $('#comp_overlay').animate({'opacity':0},1000);
+}
+function resetGame() {
+    $('#my_overlay, #comp_overlay').animate({'opacity':1},1000);
+    displayTryAgainMessage();
+}
 
 function playGame (myMove) {
     var computerMove = generateComputerMove();
-    var result = whoWon(myMove,computerMove);
+    result = whoWon(myMove,computerMove);
+    resultMessage = generateResultMessage(result);
+    
     console.log(`result is ${result}`);
     addScore(result);
     var computerMoveRPS = translateToRPS(computerMove);
@@ -143,5 +184,6 @@ function playGame (myMove) {
     console.log(`my move is: ${myMoveRPS}`);
     console.log(`myWins: ${myWins}`);
     console.log(`compWins: ${compWins}`);
-    animateResults(myWins,compWins,result,myMove,computerMove)
+    updateResults(myWins,compWins,myMove,computerMove);
+    animateResults();
 }
