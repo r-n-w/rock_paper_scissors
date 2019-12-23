@@ -7,6 +7,8 @@
     <body>
         <h1>Rock Paper Scissors</h1>
         <h3>Click your pick:</h3>
+        
+        
         <div id="options_container">
             <div class="rock">
                 <img src="RPS.jpg" />
@@ -21,7 +23,32 @@
                 <div class="overlay">Scissors</div>
             </div>
         </div>
-        <div id="my_score">0</div>
+
+        <div id="fight_container">
+            <div id="my_play">
+                <img src="RPS.jpg" />
+                <div class="overlay">Rock</div>
+            </div>
+            <div id="narration">
+                <span></span>
+            </div>
+            <div id="comp_play">
+                <img src="RPS.jpg" />
+                <div class="overlay">Rock</div>
+            </div>
+        </div>
+
+        <div id="results">
+            <div>
+                <div id="my_score">0</div>
+                <div class="wins">My Wins:</div>
+            </div>
+            <div>
+                <div id="computer_score">0</div>
+                <div class="wins">Computer Wins:</div>
+            </div>
+        </div>
+
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="script.js"></script>

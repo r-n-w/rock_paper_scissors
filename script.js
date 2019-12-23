@@ -63,14 +63,43 @@ function whoWon(myMove,computerMove) {
         (myMove === 0 && computerMove === 2) ||
         (myMove === 1 && computerMove === 0) ||
         (myMove === 2 && computerMove === 1)) {
-            return "me"
+            return "You won!"
         } else {
-            return "computer"
+            return "Womp.. try again."
         }
-
+}
+function translateToRPS(input) {
+    if (input === 0) {
+        return "rock"
+    } else if (input === 1) {
+        return "paper"
+    } else {
+        return "scissors"
+    }
 }
 function addScore(winner) {
-    winner === "me" ? myWins++ : compWins++;
+    winner === "You won!" ? myWins++ : compWins++;
+}
+
+function fightPosition(move) {
+    if (move === 0) {
+        return -4
+    } else if (move === 1) {
+        return -122
+    } else {
+        return -248
+    }
+}
+function animateResults(myWins,compWins,winner,myMove,computerMove) {
+    var myPos = fightPosition(myMove);
+    var compPos = fightPosition(computerMove);
+
+
+    $('#my_play > img').animate({'left':myPos + 'px'},0)
+    $('#comp_play > img').animate({'left':compPos + 'px'},0)
+    $('#narration > span').html(winner)
+    $('#my_score').html(myWins);
+    $('#computer_score').html(compWins);
 }
 function playGame (myMove) {
     var computerMove = generateComputerMove();
@@ -78,12 +107,15 @@ function playGame (myMove) {
         var winner = whoWon(myMove,computerMove);
         addScore(winner);
     } else {
+        var winner = "It's a tie"
         isTie();
     }
+    var computerMoveRPS = translateToRPS(computerMove);
+    var myMoveRPS = translateToRPS(myMove);
 
-
-    console.log(`computer move is: ${computerMove}`)
-    console.log(`my move is: ${myMove}`)
+    console.log(`computer move is: ${computerMoveRPS}`);
+    console.log(`my move is: ${myMoveRPS}`);
     console.log(`myWins: ${myWins}`);
-    $('#my_score').html(myWins);
+    console.log(`compWins: ${compWins}`);
+    animateResults(myWins,compWins,winner,myMove,computerMove)
 }
