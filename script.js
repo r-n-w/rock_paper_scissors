@@ -51,21 +51,20 @@ function generateComputerMove() {
     var move = Math.floor(Math.random() * 3);
     return move
 }
-function isWinner (yourMove,computerMove) {
-    return (yourMove === computerMove) ? false : true;
-}
-function isTie() {
-    console.log("you tied, try again");
-}
 function whoWon(myMove,computerMove) {
+    //User Win = -1
+    //Tie      = 0
+    //Comp Win = 1
     console.log("there's a winner!");
     if (
         (myMove === 0 && computerMove === 2) ||
         (myMove === 1 && computerMove === 0) ||
         (myMove === 2 && computerMove === 1)) {
-            return "You won!"
+            return -1;
+        } else if (myMove === computerMove){
+            return 0;
         } else {
-            return "Womp.. try again."
+            return 1;
         }
 }
 function translateToRPS(input) {
@@ -77,8 +76,17 @@ function translateToRPS(input) {
         return "scissors"
     }
 }
-function addScore(winner) {
-    winner === "You won!" ? myWins++ : compWins++;
+function addScore(result) {
+    switch (result) {
+        case -1:
+            myWins++;
+            break;
+        case 0:
+            break;
+        case 1:
+            compWins++;
+            break;
+    }
 }
 
 function fightPosition(move) {
@@ -90,26 +98,44 @@ function fightPosition(move) {
         return -248
     }
 }
-function animateResults(myWins,compWins,winner,myMove,computerMove) {
+function animateResults(myWins,compWins,result,myMove,computerMove) {
     var myPos = fightPosition(myMove);
     var compPos = fightPosition(computerMove);
 
+    switch (result) {
+        case -1:
+            animateMyWin();
+            break;
+        case 0:
+            animateTie();
+            break;
+        case 1:
+            animateCompWin();
+            break;
+    }
 
-    $('#my_play > img').animate({'left':myPos + 'px'},0)
-    $('#comp_play > img').animate({'left':compPos + 'px'},0)
-    $('#narration > span').html(winner)
+
+    $('#my_play > img').animate({'left':myPos + 'px'},0);
+    $('#comp_play > img').animate({'left':compPos + 'px'},0);
+    $('#my_overlay,#comp_overlay').animate({'opacity':0},1000,
+        function(){$('#my_play').animate({'left':0},500, 
+            function(){$('#my_play').animate({'left':100 + 'px'},500)}
+        )}
+    );
+    $('#narration > span').html('insert somethinggg');
     $('#my_score').html(myWins);
     $('#computer_score').html(compWins);
 }
+function animateMyWin(){} 
+function animateTie(){}
+function animateCompWin(){}
+
+
 function playGame (myMove) {
     var computerMove = generateComputerMove();
-    if (isWinner(myMove,computerMove)) {
-        var winner = whoWon(myMove,computerMove);
-        addScore(winner);
-    } else {
-        var winner = "It's a tie"
-        isTie();
-    }
+    var result = whoWon(myMove,computerMove);
+    console.log(`result is ${result}`);
+    addScore(result);
     var computerMoveRPS = translateToRPS(computerMove);
     var myMoveRPS = translateToRPS(myMove);
 
@@ -117,5 +143,5 @@ function playGame (myMove) {
     console.log(`my move is: ${myMoveRPS}`);
     console.log(`myWins: ${myWins}`);
     console.log(`compWins: ${compWins}`);
-    animateResults(myWins,compWins,winner,myMove,computerMove)
+    animateResults(myWins,compWins,result,myMove,computerMove)
 }

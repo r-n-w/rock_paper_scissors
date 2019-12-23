@@ -80,22 +80,43 @@ h1, h3 {
     height: 120px;
 }
 #my_play {
-align-content: flex-start;
-width: 120px;
-overflow: hidden;
+    position: relative;
+    left: 60px;
+    align-content: flex-start;
+    width: 120px;
+    overflow: hidden;
 }
 #my_play img {
-position: relative;
-left: 122px;
+    position: relative;
+    left: 122px;
 }
 #comp_play {
-align-content: flex-end;
-width: 120px;
-overflow: hidden;
+    position: relative;
+    align-content: flex-end;
+    width: 120px;
+    overflow: hidden;
 }
 #comp_play img {
     position: relative;
     left: 122px;
+}
+#my_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 120px;
+    width: 120px;
+    background-color: white;
+    opacity: .5;
+}
+#comp_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 120px;
+    width: 120px;
+    background-color: white;
+    opacity: .5;
 }
 #narration {
     width: 400px;
