@@ -56,10 +56,10 @@ h1, h3 {
     opacity: 1;
 }
 .rock .overlay {
-    background-color: #fa7c7c;
+    background-color: salmon;
 }
 .paper .overlay {
-    background-color: turquoise;
+    background-color: paleturquoise;
 }
 .scissors .overlay {
     background-color: wheat;
