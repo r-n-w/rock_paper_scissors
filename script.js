@@ -21,45 +21,43 @@ calls 'generateComputerMove()'
 if 'isWinner()' = false call 'who_won?()'
 adds tally to computer or yourself (global variables?)
 
-
-
 */
+
+
 var myWins = 0;
 var compWins = 0;
 var result = 10;
 var resultMessage = 0;
+var myMove = 10;
+var computerMove = 10;
+var winnersColor = 10;
 
 
-$('.rock').click(play_rock);
-$('.paper').click(play_paper);
-$('.scissors').click(play_scissors);
-function play_rock() {
-    var myMove = 0;
-    playGame(myMove);
+$('.rock').click(playRock);
+$('.paper').click(playPaper);
+$('.scissors').click(playScissors);
+
+function playRock() {
+    $('#narration_overlay').animate({'opacity':1},100)
+    myMove = 0;
+    setTimeout(playGame,200);
 }
-function play_paper() {
-    var myMove = 1;
-    playGame(myMove);
+function playPaper() {
+    $('#narration_overlay').animate({'opacity':1},100)
+    myMove = 1;
+    setTimeout(playGame,200);
 }
-function play_scissors() {
-    var myMove = 2;
-    playGame(myMove);
+function playScissors() {
+    $('#narration_overlay').animate({'opacity':1},100)
+    myMove = 2;
+    setTimeout(playGame,200);
 }
-function playGame (myMove) {
-    var computerMove = generateComputerMove();
+function playGame () {
+    computerMove = generateComputerMove();
     result = whoWon(myMove,computerMove);
-    resultMessage = generateResultMessage(result);
-    
-    console.log(`result is ${result}`);
     addScore(result);
-    var computerMoveRPS = translateToRPS(computerMove);
-    var myMoveRPS = translateToRPS(myMove);
-
-    console.log(`computer move is: ${computerMoveRPS}`);
-    console.log(`my move is: ${myMoveRPS}`);
-    console.log(`myWins: ${myWins}`);
-    console.log(`compWins: ${compWins}`);
-    updateResults(myWins,compWins,myMove,computerMove);
+    winnersColor = fightColor(winnersMove());
+    updateResults();
     animateResults();
 }
     function generateComputerMove() {
@@ -82,18 +80,12 @@ function playGame (myMove) {
                 return 1;
             }
     }
-    function generateResultMessage(result) {
-        switch (result) {
-            case -1:
-                return "You Win"
-                break;
-            case 0:
-                return "Tie"
-                break;
-            case 1:
-                return "You Lost"
-                break;
-        }
+    function winnersMove() {
+        if (result === -1) {
+            return myMove;
+        } else {
+            return computerMove;
+        } 
     }
     function addScore(result) {
         switch (result) {
@@ -107,6 +99,7 @@ function playGame (myMove) {
                 break;
         }
     }
+    /*
     function translateToRPS(input) {
         if (input === 0) {
             return "rock"
@@ -116,20 +109,52 @@ function playGame (myMove) {
             return "scissors"
         }
     }
-    function updateResults(myWins,compWins,myMove,computerMove) {
+    */
+    function updateResults() {
         var myPos = fightPosition(myMove);
         var compPos = fightPosition(computerMove);
-
+        var myColor = fightColor(myMove);
+        var compColor = fightColor(computerMove);
+        var narrationColor = winnersColor;
+        resultMessage = generateResultMessage(result);
+        $('#narration span').html(resultMessage);
+        $('#narration').css('background-color',narrationColor)
         $('#my_play > img').css('left',myPos + 'px');
         $('#comp_play > img').css('left',compPos + 'px');
+        $('#my_play .label').css('background-color', myColor);
+        $('#comp_play .label').css('background-color', compColor);
     }
         function fightPosition(move) {
-            if (move === 0) {
-                return -4
-            } else if (move === 1) {
-                return -122
-            } else {
-                return -248
+            switch(move) {
+                case 0:
+                    return -4;
+                case 1:
+                    return -122;
+                case 2:
+                    return -244;
+            };
+        }
+        function fightColor(move) {
+            switch(move) {
+                case 0:
+                    return 'salmon';
+                case 1:
+                    return 'paleturquoise';
+                case 2:
+                    return 'wheat';
+            };
+        }
+        function generateResultMessage(result) {
+            switch (result) {
+                case -1:
+                    return "You Win"
+                    break;
+                case 0:
+                    return "Tie"
+                    break;
+                case 1:
+                    return "You Lost"
+                    break;
             }
         }
     function animateResults() {
@@ -149,16 +174,24 @@ function playGame (myMove) {
                 break;
         }
         */
+        setTimeout(displayNarration,5000);
+
+
         //figure out how to update score after animation
         $('#my_score').html(myWins);
         $('#computer_score').html(compWins);
-        setTimeout(resetGame,6000);
+        setTimeout(resetGame,7000);
     }
         function displayMyMove() {
-            $('#my_overlay').animate({'opacity':0},1000);
+            $('#my_overlay').animate({'opacity':0},1000,
+                function(){$('#my_play .label').animate({'opacity':0},500)}
+            );
+
         }
         function displayCompMove() {
-            $('#comp_overlay').animate({'opacity':0},1000);
+            $('#comp_overlay').animate({'opacity':0},1000,
+                function(){$('#comp_play .label').animate({'opacity':0},500)}
+            );
         }
             function animateMyWin() {}
             function animateTie() {
@@ -168,17 +201,17 @@ function playGame (myMove) {
                 $('#comp_play').animate({'left':-200 + 'px'},1000,
                     function(){$('#comp_play').animate({'left':0 + 'px'},1000)}
                 );
-                setTimeout(displayResultMessage,2000);
             }
             function animateCompWin() {}
-        function displayResultMessage() {
-            $('#narration > span').html(resultMessage);
-            $('#narration').css('background-color','paleturquoise')
-        }
-        function displayTryAgainMessage(){
-            $('#narration > span').html('Play again pls');
+        function displayNarration() {
+            $('#narration_overlay').animate({'opacity':0},1000)
         }
         function resetGame() {
-            $('#my_overlay, #comp_overlay').animate({'opacity':1},1000);
+            $('#my_overlay, #comp_overlay').animate({'opacity':1},1000,
+                function(){$('.label').css('opacity', 1)}
+            );
             displayTryAgainMessage();
         }
+            function displayTryAgainMessage(){
+                $('#narration span').html('Play again pls');
+            }
