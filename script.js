@@ -21,6 +21,12 @@ calls 'generateComputerMove()'
 if 'isWinner()' = false call 'who_won?()'
 adds tally to computer or yourself (global variables?)
 
+Need to make the narration script change to "try again pls" gradual
+Need to make an exciting well timed score update.
+Set clear background to icons
+make icons spin before they punch
+
+
 */
 
 
@@ -31,6 +37,7 @@ var resultMessage = 0;
 var myMove = 10;
 var computerMove = 10;
 var winnersColor = 10;
+
 
 
 $('.rock').click(playRock);
@@ -99,17 +106,6 @@ function playGame () {
                 break;
         }
     }
-    /*
-    function translateToRPS(input) {
-        if (input === 0) {
-            return "rock"
-        } else if (input === 1) {
-            return "paper"
-        } else {
-            return "scissors"
-        }
-    }
-    */
     function updateResults() {
         var myPos = fightPosition(myMove);
         var compPos = fightPosition(computerMove);
@@ -158,29 +154,39 @@ function playGame () {
             }
         }
     function animateResults() {
-        setTimeout(displayMyMove,100);
-        setTimeout(displayCompMove,1500);
-        setTimeout(animateTie,3000);
-        /*
+        var timeLine = 100;
+        setTimeout(displayMyMove,timeLine);
+
+        timeLine += 1000;
+        setTimeout(displayCompMove,timeLine);
+        timeLine += 2000;
+        // timeLine += 1000;
+        // setTimeout(animateTie,timeLine);
+        
         switch (result) {
             case -1:
-                animateMyWin();
+                setTimeout(animateMyWin,timeLine);
                 break;
             case 0:
-                animateTie();
+
+                setTimeout(animateTie,timeLine);
                 break;
             case 1:
-                animateCompWin();
+                setTimeout(animateCompWin,timeLine);
                 break;
         }
-        */
-        setTimeout(displayNarration,5000);
+        
+
+        timeLine += 2000;
+        setTimeout(displayNarration,timeLine);
+        setTimeout(function() {
+            $('#my_score').html(myWins);
+            $('#computer_score').html(compWins);
+        },timeLine);
 
 
-        //figure out how to update score after animation
-        $('#my_score').html(myWins);
-        $('#computer_score').html(compWins);
-        setTimeout(resetGame,7000);
+        timeLine += 3000;
+        setTimeout(resetGame,timeLine);
     }
         function displayMyMove() {
             $('#my_overlay').animate({'opacity':0},1000,
@@ -193,7 +199,13 @@ function playGame () {
                 function(){$('#comp_play .label').animate({'opacity':0},500)}
             );
         }
-            function animateMyWin() {}
+            function animateMyWin() {
+                setTimeout(function(){$('#my_play').css('z-index', '100')},0);
+                setTimeout(function(){$('#my_play').animate({'left':520 + 'px'},500)},500);
+                setTimeout(function(){$('#comp_overlay').css('opacity',1)},1000);
+                setTimeout(function(){$('#my_play').animate({'left':0 + 'px'},1000)},1000);
+                setTimeout(function(){$('#my_play').css('z-index', '10')},1500);
+            }
             function animateTie() {
                 $('#my_play').animate({'left':200 + 'px'},1000,
                     function(){$('#my_play').animate({'left':0 + 'px'},1000)}
@@ -202,7 +214,13 @@ function playGame () {
                     function(){$('#comp_play').animate({'left':0 + 'px'},1000)}
                 );
             }
-            function animateCompWin() {}
+            function animateCompWin() {
+                setTimeout(function(){$('#comp_play').css('z-index', '100')},0);
+                setTimeout(function(){$('#comp_play').animate({'left':-520 + 'px'},500)},500);
+                setTimeout(function(){$('#my_overlay').css('opacity',1)},1000);
+                setTimeout(function(){$('#comp_play').animate({'left':0 + 'px'},1000)},1000);
+                setTimeout(function(){$('#comp_play').css('z-index', '10')},1500);
+            }
         function displayNarration() {
             $('#narration_overlay').animate({'opacity':0},1000)
         }

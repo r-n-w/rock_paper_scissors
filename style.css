@@ -1,6 +1,8 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     cursor: default;
+    background-color: white;
+    color: #30458a   ;
 }
 #options_container img {
     height: 80px;
@@ -91,6 +93,7 @@ h1, h3 {
     align-content: flex-start;
     width: 120px;
     overflow: hidden;
+    border-radius: 60px;
 }
 #my_play img {
     position: relative;
@@ -102,6 +105,7 @@ h1, h3 {
     align-content: flex-end;
     width: 120px;
     overflow: hidden;
+    border-radius: 60px;
 }
 #comp_play img {
     position: relative;
