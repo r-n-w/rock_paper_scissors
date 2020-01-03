@@ -1,7 +1,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     cursor: default;
-    background-color: white;
+    background-color: grey;
     color: black;
 }
 #options_container img {
@@ -34,15 +34,15 @@ h1, h3 {
 }
 .rock img {
     position: relative;
-    left: -2px;
+    left: 0;
 }
 .paper img {
     position: relative;
-    left: -82px;
+    left: 0;
 }
 .scissors img {
     position: relative;
-    left: -162px;
+    left: 0;
 }
 .overlay{
     position: absolute;
@@ -96,6 +96,7 @@ h1, h3 {
     border-radius: 60px;
 }
 #my_play img {
+    transform: rotate(0deg);
     position: relative;
     left: 122px;
     z-index: 10;
@@ -197,7 +198,6 @@ h1, h3 {
     margin: auto;
 }
 #results > div {
-//    margin: 50px;
     width: 120px;
     height: 30px;
     text-align: center;

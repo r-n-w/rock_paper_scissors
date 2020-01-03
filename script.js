@@ -120,107 +120,107 @@ function playGame () {
         $('#my_play .label').css('background-color', myColor);
         $('#comp_play .label').css('background-color', compColor);
     }
-        function fightPosition(move) {
-            switch(move) {
-                case 0:
-                    return -4;
-                case 1:
-                    return -122;
-                case 2:
-                    return -244;
-            };
-        }
-        function fightColor(move) {
-            switch(move) {
-                case 0:
-                    return 'salmon';
-                case 1:
-                    return 'paleturquoise';
-                case 2:
-                    return 'wheat';
-            };
-        }
-        function generateResultMessage(result) {
-            switch (result) {
-                case -1:
-                    return "You Win"
-                    break;
-                case 0:
-                    return "Tie"
-                    break;
-                case 1:
-                    return "You Lost"
-                    break;
-            }
-        }
-    function animateResults() {
-        var timeLine = 100;
-        setTimeout(displayMyMove,timeLine);
-
-        timeLine += 1000;
-        setTimeout(displayCompMove,timeLine);
-        timeLine += 2000;
-        // timeLine += 1000;
-        // setTimeout(animateTie,timeLine);
-        
-        switch (result) {
-            case -1:
-                setTimeout(animateMyWin,timeLine);
-                break;
-            case 0:
-
-                setTimeout(animateTie,timeLine);
-                break;
-            case 1:
-                setTimeout(animateCompWin,timeLine);
-                break;
-        }
-        
-
-        timeLine += 2000;
-        setTimeout(displayNarration,timeLine);
-        setTimeout(function() {
-            $('#my_score').html(myWins);
-            $('#computer_score').html(compWins);
-        },timeLine);
-
-
-        timeLine += 3000;
-        setTimeout(resetGame,timeLine);
+function fightPosition(move) {
+    switch(move) {
+        case 0:
+            return -4;
+        case 1:
+            return -122;
+        case 2:
+            return -244;
+    };
+}
+function fightColor(move) {
+    switch(move) {
+        case 0:
+            return 'salmon';
+        case 1:
+            return 'paleturquoise';
+        case 2:
+            return 'wheat';
+    };
+}
+function generateResultMessage(result) {
+    switch (result) {
+        case -1:
+            return "You Win"
+            break;
+        case 0:
+            return "Tie"
+            break;
+        case 1:
+            return "You Lost"
+            break;
     }
-        function displayMyMove() {
-            $('#my_overlay').animate({'opacity':0},1000,
-                function(){$('#my_play .label').animate({'opacity':0},500)}
-            );
+}
+function animateResults() {
+    var timeLine = 100;
+    setTimeout(displayMyMove,timeLine);
 
-        }
-        function displayCompMove() {
-            $('#comp_overlay').animate({'opacity':0},1000,
-                function(){$('#comp_play .label').animate({'opacity':0},500)}
-            );
-        }
-            function animateMyWin() {
-                setTimeout(function(){$('#my_play').css('z-index', '100')},0);
-                setTimeout(function(){$('#my_play').animate({'left':520 + 'px'},500)},500);
-                setTimeout(function(){$('#comp_overlay').css('opacity',1)},1000);
-                setTimeout(function(){$('#my_play').animate({'left':0 + 'px'},1000)},1000);
-                setTimeout(function(){$('#my_play').css('z-index', '10')},1500);
-            }
-            function animateTie() {
-                $('#my_play').animate({'left':200 + 'px'},1000,
-                    function(){$('#my_play').animate({'left':0 + 'px'},1000)}
-                );
-                $('#comp_play').animate({'left':-200 + 'px'},1000,
-                    function(){$('#comp_play').animate({'left':0 + 'px'},1000)}
-                );
-            }
-            function animateCompWin() {
-                setTimeout(function(){$('#comp_play').css('z-index', '100')},0);
-                setTimeout(function(){$('#comp_play').animate({'left':-520 + 'px'},500)},500);
-                setTimeout(function(){$('#my_overlay').css('opacity',1)},1000);
-                setTimeout(function(){$('#comp_play').animate({'left':0 + 'px'},1000)},1000);
-                setTimeout(function(){$('#comp_play').css('z-index', '10')},1500);
-            }
+    timeLine += 1000;
+    setTimeout(displayCompMove,timeLine);
+    timeLine += 2000;
+    // timeLine += 1000;
+    // setTimeout(animateTie,timeLine);
+    
+    switch (result) {
+        case -1:
+            setTimeout(animateMyWin,timeLine);
+            break;
+        case 0:
+
+            setTimeout(animateTie,timeLine);
+            break;
+        case 1:
+            setTimeout(animateCompWin,timeLine);
+            break;
+    }
+    
+
+    timeLine += 2000;
+    setTimeout(displayNarration,timeLine);
+    setTimeout(function() {
+        $('#my_score').html(myWins);
+        $('#computer_score').html(compWins);
+    },timeLine);
+
+
+    timeLine += 3000;
+    setTimeout(resetGame,timeLine);
+}
+function displayMyMove() {
+    $('#my_overlay').animate({'opacity':0},1000,
+        function(){$('#my_play .label').animate({'opacity':0},500)}
+    );
+
+}
+function displayCompMove() {
+    $('#comp_overlay').animate({'opacity':0},1000,
+        function(){$('#comp_play .label').animate({'opacity':0},500)}
+    );
+}
+function animateMyWin() {
+    setTimeout(function(){$('#my_play').css('z-index', '100')},0);
+    setTimeout(function(){$('#my_play').animate({'left':520 + 'px'},500)},500);
+    setTimeout(function(){$('#comp_overlay').css('opacity',1)},1000);
+    setTimeout(function(){$('#my_play').animate({'left':0 + 'px'},1000)},1000);
+    setTimeout(function(){$('#my_play').css('z-index', '10')},1500);
+}
+function animateTie() {
+    $('#my_play').animate({'left':200 + 'px'},1000,
+        function(){$('#my_play').animate({'left':0 + 'px'},1000)}
+    );
+    $('#comp_play').animate({'left':-200 + 'px'},1000,
+        function(){$('#comp_play').animate({'left':0 + 'px'},1000)}
+    );
+}
+function animateCompWin() {
+    setTimeout(function(){$('#comp_play').css('z-index', '100')},0);
+    setTimeout(function(){$('#comp_play').animate({'left':-520 + 'px'},500)},500);
+    setTimeout(function(){$('#my_overlay').css('opacity',1)},1000);
+    setTimeout(function(){$('#comp_play').animate({'left':0 + 'px'},1000)},1000);
+    setTimeout(function(){$('#comp_play').css('z-index', '10')},1500);
+}
         function displayNarration() {
             $('#narration_overlay').animate({'opacity':0},1000)
         }
