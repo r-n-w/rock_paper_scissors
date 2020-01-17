@@ -1,9 +1,11 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     cursor: default;
-    background-color: grey;
     color: black;
+    background-color: grey;
 }
+
+
 #options_container img {
     height: 80px;
 }
@@ -32,15 +34,16 @@ h1, h3 {
     overflow: hidden;
     cursor: pointer;
 }
-.rock img {
-    position: relative;
-    left: 0;
+.rock {
+    background-color: salmon;
 }
-.paper img {
-    position: relative;
-    left: 0;
+.paper {
+    background-color: paleturquoise;
 }
-.scissors img {
+.scissors {
+    background-color: wheat;
+}
+.options img {
     position: relative;
     left: 0;
 }
@@ -54,10 +57,16 @@ h1, h3 {
     line-height: 80px;
     color: white;
     opacity: 0;
-    transition: .5s ease;
+    border-radius: 40px;
+    box-sizing: border-box;
+    transition: .2s ease;
 }
 .overlay:hover{
     opacity: 1;
+}
+.overlay:active{
+    border: 5px solid white;
+    line-height: 70px;
 }
 .rock .overlay {
     background-color: salmon;
@@ -92,56 +101,30 @@ h1, h3 {
     left: 0px;
     align-content: flex-start;
     width: 120px;
+    height: 120px;
     overflow: hidden;
     border-radius: 60px;
 }
 #my_play img {
     transform: rotate(0deg);
     position: relative;
-    left: 122px;
+    left: 0;
     z-index: 10;
+    opacity: 0;
 }
 #comp_play {
     position: relative;
     align-content: flex-end;
     width: 120px;
+    height: 120px;
     overflow: hidden;
     border-radius: 60px;
 }
 #comp_play img {
     position: relative;
-    left: 122px;
+    left: 0;
     z-index: 10;
-}
-#my_overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 120px;
-    width: 120px;
-    background-color: white;
-    opacity: 1;
-    z-index: 30;
-}
-#comp_overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 120px;
-    width: 120px;
-    background-color: white;
-    opacity: 1;
-    z-index: 30;
-}
-#narration_overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 120px;
-    width: 120px;
-    background-color: white;
-    opacity: 1;
-    z-index: 9;
+    opacity: 0;
 }
 .label {
     position: absolute;
@@ -163,22 +146,27 @@ h1, h3 {
     top: 40px;
 }
 #my_play .label {
-    background-color: salmon;
-    opacity: 1;
+    background-color: grey;
+    opacity: 0;
 }
 #comp_play .label {
-    background-color: paleturquoise;
+    background-color: grey;
+    opacity: 0;
+}
+#narration .label {
+    background-color: grey;
     opacity: 1;
 }
 #narration {
     position: relative;
     width: 120px;
+    height: 120px;
     border-radius: 60px;
     text-align: center;
     font-weight: 600;
     font-size: 22px;
-    background-color: white;
     z-index: 1;
+    opacity: 0;
 }
 #narration span {
     display: block;
@@ -188,6 +176,8 @@ h1, h3 {
     color: white;
     z-index: 5;
 }
+
+
 
 
 
