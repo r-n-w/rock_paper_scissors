@@ -44,17 +44,14 @@ $('.paper').click(playPaper);
 $('.scissors').click(playScissors);
 
 function playRock() {
-    $('#narration_overlay').animate({'opacity':1},100)
     myMove = 0;
     setTimeout(playGame,200);
 }
 function playPaper() {
-    $('#narration_overlay').animate({'opacity':1},100)
     myMove = 1;
     setTimeout(playGame,200);
 }
 function playScissors() {
-    $('#narration_overlay').animate({'opacity':1},100)
     myMove = 2;
     setTimeout(playGame,200);
 }
@@ -114,7 +111,6 @@ function updateResults() {
     resultMessage = generateResultMessage(result);
     $('#narration').css('opacity',0)
     $('#narration span').html(resultMessage);
- //   $('#narration').css('background-color',narrationColor)
     $('#my_play > img').attr('src',myPos);
     $('#comp_play > img').attr('src',compPos);
     $('#my_play .label').css('background-color', myColor);
