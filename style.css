@@ -2,12 +2,14 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     cursor: default;
     color: black;
-    background-color: grey;
+    background-color: white;
 }
 
 
 #options_container img {
-    height: 80px;
+    display: block;
+    margin: auto;
+    width: 60px;
 }
 h1, h3 {
     display: block;
@@ -26,22 +28,23 @@ h1, h3 {
 
 }
 .rock, .paper, .scissors {
-    position: relative;
+    display: grid;
     border-radius: 40px;
     width: 80px;
     height: 80px;
     margin: 10px;
     overflow: hidden;
     cursor: pointer;
+    box-shadow: 0 0 4px 0px #919191;
 }
 .rock {
-    background-color: salmon;
+    background-color: #fa8072;
 }
 .paper {
-    background-color: paleturquoise;
+    background-color: #afeeee;
 }
 .scissors {
-    background-color: wheat;
+    background-color: #f5deb3;
 }
 .options img {
     position: relative;
@@ -55,27 +58,23 @@ h1, h3 {
     width: 80px;
     text-align: center;
     line-height: 80px;
-    color: white;
     opacity: 0;
     border-radius: 40px;
     box-sizing: border-box;
     transition: .2s ease;
-}
-.overlay:hover{
-    opacity: 1;
 }
 .overlay:active{
     border: 5px solid white;
     line-height: 70px;
 }
 .rock .overlay {
-    background-color: salmon;
+    background-color: #fa8072;
 }
 .paper .overlay {
-    background-color: paleturquoise;
+    background-color: #afeeee;
 }
 .scissors .overlay {
-    background-color: wheat;
+    background-color: #f5deb3;
 }
 .text {
     position: relative;
@@ -94,31 +93,32 @@ h1, h3 {
     margin: auto;
 }
 #fight_container img {
-    height: 120px;
+    width: 90px;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
 }
-#my_play {
+#my_play, #comp_play {
     position: relative;
-    left: 0px;
-    align-content: flex-start;
     width: 120px;
     height: 120px;
     overflow: hidden;
     border-radius: 60px;
+    opacity: 0;
+    display: flex;
+    box-shadow: 0 0 10px 0 #919191;
+}
+#my_play {
+    align-content: flex-start;
+    left: 0px;
 }
 #my_play img {
-    transform: rotate(0deg);
-    position: relative;
     left: 0;
     z-index: 10;
     opacity: 0;
 }
 #comp_play {
-    position: relative;
     align-content: flex-end;
-    width: 120px;
-    height: 120px;
-    overflow: hidden;
-    border-radius: 60px;
 }
 #comp_play img {
     position: relative;
@@ -134,7 +134,6 @@ h1, h3 {
     height: 120px;
     width: 120px;
     font-size: 16px;
-    color: white;
     font-weight: 600;
     text-align: center;
     z-index: 20;
@@ -154,7 +153,7 @@ h1, h3 {
     opacity: 0;
 }
 #narration .label {
-    background-color: grey;
+    background-color: white;
     opacity: 1;
 }
 #narration {
@@ -173,7 +172,7 @@ h1, h3 {
     position: relative;
     top: 40px;
     margin: auto;
-    color: white;
+    color: black;
     z-index: 5;
 }
 

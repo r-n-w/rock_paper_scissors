@@ -38,6 +38,32 @@ var myMove = 10;
 var computerMove = 10;
 var winnersColor = 10;
 
+$('.rock, .paper, .scissors').hover(function() {
+    $(this).css("box-shadow", "0 0 5px 1px #919191");
+    }, function() {
+    $(this).css("box-shadow", "0 0 4px 0 #919191");
+});
+
+$('.rock').mousedown(function() {
+    $(this).css("background-color", "#fa9084");
+});
+$('.rock').mouseup(function() {
+    $(this).css("background-color", "#fa8072");
+});
+
+$('.paper').mousedown(function() {
+    $(this).css("background-color", "#c0eded");
+});
+$('.paper').mouseup(function() {
+    $(this).css("background-color", "#afeeee");
+});
+
+$('.scissors').mousedown(function() {
+    $(this).css("background-color", "#faeacd");
+});
+$('.scissors').mouseup(function() {
+    $(this).css("background-color", "#f5deb3");
+});
 
 $('.rock').click(playRock);
 $('.paper').click(playPaper);
@@ -113,6 +139,8 @@ function updateResults() {
     $('#narration span').html(resultMessage);
     $('#my_play > img').attr('src',myPos);
     $('#comp_play > img').attr('src',compPos);
+    $('#my_play').css('background-color', myColor);
+    $('#comp_play').css('background-color', compColor);
     $('#my_play .label').css('background-color', myColor);
     $('#comp_play .label').css('background-color', compColor);
 }
@@ -156,15 +184,12 @@ function animateResults() {
     timeLine += 2000;
     setTimeout(displayCompMove,timeLine);
     timeLine += 2500;
-    // timeLine += 1000;
-    // setTimeout(animateTie,timeLine);
-    
+
     switch (result) {
         case -1:
             setTimeout(animateMyWin,timeLine);
             break;
         case 0:
-
             setTimeout(animateTie,timeLine);
             break;
         case 1:
@@ -187,20 +212,20 @@ function animateResults() {
 function displayMyMove() {
 
     setTimeout(function(){$('#my_play .label').animate({'opacity':1},1000)},0);
-    setTimeout(function(){$('#my_play img').css('opacity', '1')},1000);
+    setTimeout(function(){$('#my_play img, #my_play').css('opacity', '1')},1000);
     setTimeout(function(){$('#my_play .label').animate({'opacity':0},1000)},1500);
 
 }
 function displayCompMove() {
     setTimeout(function(){$('#comp_play .label').animate({'opacity':1},1000)},0);
-    setTimeout(function(){$('#comp_play img').css('opacity', '1')},1000);
+    setTimeout(function(){$('#comp_play img, #comp_play').css('opacity', '1')},1000);
     setTimeout(function(){$('#comp_play .label').animate({'opacity':0},1000)},1500);
 
 }
 function animateMyWin() {
     setTimeout(function(){$('#my_play').css('z-index', '100')},0);
     setTimeout(function(){$('#my_play').animate({'left':520 + 'px'},500)},500);
-    setTimeout(function(){$('#comp_play img').css('opacity',0)},1000);
+    setTimeout(function(){$('#comp_play img, #comp_play').css('opacity',0)},1000);
     setTimeout(function(){$('#my_play').animate({'left':0 + 'px'},1000)},1000);
     setTimeout(function(){$('#my_play').css('z-index', '10')},1500);
 }
@@ -215,7 +240,7 @@ function animateTie() {
 function animateCompWin() {
     setTimeout(function(){$('#comp_play').css('z-index', '100')},0);
     setTimeout(function(){$('#comp_play').animate({'left':-520 + 'px'},500)},500);
-    setTimeout(function(){$('#my_play img').css('opacity',0)},1000);
+    setTimeout(function(){$('#my_play img, #my_play').css('opacity',0)},1000);
     setTimeout(function(){$('#comp_play').animate({'left':0 + 'px'},1000)},1000);
     setTimeout(function(){$('#comp_play').css('z-index', '10')},1500);
 }
@@ -223,7 +248,7 @@ function displayNarration() {
     $('#narration').animate({'opacity':1},1000)
 }
 function resetGame() {
-    $('#my_play img, #comp_play img').animate({'opacity':0},1000);
+    $('#my_play img, #comp_play img, #my_play, #comp_play').animate({'opacity':0},1000);
     displayTryAgainMessage();
 }
 function displayTryAgainMessage(){
