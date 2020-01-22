@@ -51,37 +51,37 @@ function activateButtons() {
         $('.rock .overlay').css("opacity","0");
         });
     $('.paper').hover(function() {
-        $(this).css("box-shadow", "0 0 5px 1px #919191");
+        $(this).css("box-shadow", "0 0 5px 2px #919191");
         $('.paper .overlay').css("opacity","1");
         }, function() {
         $(this).css("box-shadow", "0 0 4px 0 #919191");
         $('.paper .overlay').css("opacity","0");
         });
     $('.scissors').hover(function() {
-        $(this).css("box-shadow", "0 0 5px 1px #919191");
+        $(this).css("box-shadow", "0 0 5px 2px #919191");
         $('.scissors .overlay').css("opacity","1");
         }, function() {
         $(this).css("box-shadow", "0 0 4px 0 #919191");
         $('.scissors .overlay').css("opacity","0");
         });            
-    $('.rock').mousedown(function() {
+    $('.rock .overlay').mousedown(function() {
         $(this).css("background-color", "#fa9084");
     });
-    $('.rock').mouseup(function() {
+    $('.rock .overlay').mouseup(function() {
         $(this).css("background-color", "#fa8072");
     });
 
-    $('.paper').mousedown(function() {
+    $('.paper .overlay').mousedown(function() {
         $(this).css("background-color", "#c0eded");
     });
-    $('.paper').mouseup(function() {
+    $('.paper .overlay').mouseup(function() {
         $(this).css("background-color", "#afeeee");
     });
 
-    $('.scissors').mousedown(function() {
+    $('.scissors .overlay').mousedown(function() {
         $(this).css("background-color", "#faeacd");
     });
-    $('.scissors').mouseup(function() {
+    $('.scissors .overlay').mouseup(function() {
         $(this).css("background-color", "#f5deb3");
     });
 
@@ -209,9 +209,9 @@ function animateResults() {
     var timeLine = 100;
     setTimeout(displayMyMove,timeLine);
 
-    timeLine += 2000;
-    setTimeout(displayCompMove,timeLine);
     timeLine += 2500;
+    setTimeout(displayCompMove,timeLine);
+    timeLine += 3000;
 
     switch (result) {
         case -1:
@@ -224,7 +224,6 @@ function animateResults() {
             setTimeout(animateCompWin,timeLine);
             break;
     }
-    
 
     timeLine += 2000;
     setTimeout(displayNarration,timeLine);
@@ -233,7 +232,6 @@ function animateResults() {
         $('#computer_score').html(compWins);
     },timeLine);
 
-
     timeLine += 3000;
     setTimeout(resetGame,timeLine);
 }
@@ -241,13 +239,13 @@ function displayMyMove() {
 
     setTimeout(function(){$('#my_play .label').animate({'opacity':1},1000)},0);
     setTimeout(function(){$('#my_play img, #my_play').css('opacity', '1')},1000);
-    setTimeout(function(){$('#my_play .label').animate({'opacity':0},1000)},1500);
+    setTimeout(function(){$('#my_play .label').animate({'opacity':0},1000)},2500);
 
 }
 function displayCompMove() {
     setTimeout(function(){$('#comp_play .label').animate({'opacity':1},1000)},0);
     setTimeout(function(){$('#comp_play img, #comp_play').css('opacity', '1')},1000);
-    setTimeout(function(){$('#comp_play .label').animate({'opacity':0},1000)},1500);
+    setTimeout(function(){$('#comp_play .label').animate({'opacity':0},1000)},2500);
 
 }
 function animateMyWin() {
