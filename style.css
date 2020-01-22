@@ -29,6 +29,7 @@ h1, h3 {
 }
 .rock, .paper, .scissors {
     display: grid;
+    position: relative;
     border-radius: 40px;
     width: 80px;
     height: 80px;
@@ -62,10 +63,6 @@ h1, h3 {
     border-radius: 40px;
     box-sizing: border-box;
     transition: .2s ease;
-}
-.overlay:active{
-    border: 5px solid white;
-    line-height: 70px;
 }
 .rock .overlay {
     background-color: #fa8072;
@@ -111,6 +108,7 @@ h1, h3 {
 #my_play {
     align-content: flex-start;
     left: 0px;
+    opacity: 0;
 }
 #my_play img {
     left: 0;

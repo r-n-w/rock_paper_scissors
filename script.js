@@ -37,49 +37,77 @@ var resultMessage = 0;
 var myMove = 10;
 var computerMove = 10;
 var winnersColor = 10;
+activateButtons();
 
-$('.rock, .paper, .scissors').hover(function() {
-    $(this).css("box-shadow", "0 0 5px 1px #919191");
-    }, function() {
-    $(this).css("box-shadow", "0 0 4px 0 #919191");
-});
 
-$('.rock').mousedown(function() {
-    $(this).css("background-color", "#fa9084");
-});
-$('.rock').mouseup(function() {
-    $(this).css("background-color", "#fa8072");
-});
+function activateButtons() {
+    $('.rock, .paper, .scissors').css('box-shadow','0 0 4px 0 #919191');
 
-$('.paper').mousedown(function() {
-    $(this).css("background-color", "#c0eded");
-});
-$('.paper').mouseup(function() {
-    $(this).css("background-color", "#afeeee");
-});
+    $('.rock').hover(function() {
+        $(this).css("box-shadow", "0 0 5px 2px #919191");
+        $('.rock .overlay').css("opacity","1");
+        }, function() {
+        $(this).css("box-shadow", "0 0 4px 0 #919191");
+        $('.rock .overlay').css("opacity","0");
+        });
+    $('.paper').hover(function() {
+        $(this).css("box-shadow", "0 0 5px 1px #919191");
+        $('.paper .overlay').css("opacity","1");
+        }, function() {
+        $(this).css("box-shadow", "0 0 4px 0 #919191");
+        $('.paper .overlay').css("opacity","0");
+        });
+    $('.scissors').hover(function() {
+        $(this).css("box-shadow", "0 0 5px 1px #919191");
+        $('.scissors .overlay').css("opacity","1");
+        }, function() {
+        $(this).css("box-shadow", "0 0 4px 0 #919191");
+        $('.scissors .overlay').css("opacity","0");
+        });            
+    $('.rock').mousedown(function() {
+        $(this).css("background-color", "#fa9084");
+    });
+    $('.rock').mouseup(function() {
+        $(this).css("background-color", "#fa8072");
+    });
 
-$('.scissors').mousedown(function() {
-    $(this).css("background-color", "#faeacd");
-});
-$('.scissors').mouseup(function() {
-    $(this).css("background-color", "#f5deb3");
-});
+    $('.paper').mousedown(function() {
+        $(this).css("background-color", "#c0eded");
+    });
+    $('.paper').mouseup(function() {
+        $(this).css("background-color", "#afeeee");
+    });
 
-$('.rock').click(playRock);
-$('.paper').click(playPaper);
-$('.scissors').click(playScissors);
+    $('.scissors').mousedown(function() {
+        $(this).css("background-color", "#faeacd");
+    });
+    $('.scissors').mouseup(function() {
+        $(this).css("background-color", "#f5deb3");
+    });
 
+    $('.rock').click(playRock);
+    $('.paper').click(playPaper);
+    $('.scissors').click(playScissors);
+}
+function deactivateButtons() {
+    $('.rock, .paper, .scissors').off();
+    $('.overlay').animate({'opacity':0},100);
+    $('.rock, .paper, .scissors').css('box-shadow','0 0 0 0 #919191');
+}
 function playRock() {
+    deactivateButtons();
     myMove = 0;
-    setTimeout(playGame,200);
+    setTimeout(playGame,100);
 }
 function playPaper() {
+    deactivateButtons();
     myMove = 1;
-    setTimeout(playGame,200);
+    setTimeout(playGame,100);
 }
 function playScissors() {
+    deactivateButtons();
     myMove = 2;
-    setTimeout(playGame,200);
+    setTimeout(playGame,100);
 }
 function playGame () {
     computerMove = generateComputerMove();
@@ -250,6 +278,7 @@ function displayNarration() {
 function resetGame() {
     $('#my_play img, #comp_play img, #my_play, #comp_play').animate({'opacity':0},1000);
     displayTryAgainMessage();
+    activateButtons();
 }
 function displayTryAgainMessage(){
     $('#narration span').html('Play again pls');
