@@ -42,6 +42,9 @@ activateButtons();
 
 function activateButtons() {
     $('.rock, .paper, .scissors').css('box-shadow','0 0 4px 0 #919191');
+    $('.rock').css('background-color', '#fa8072');
+    $('.paper').css('background-color', '#afeeee');
+    $('.scissors').css('background-color', '#f5deb3');
 
     $('.rock').hover(function() {
         $(this).css("box-shadow", "0 0 5px 2px #919191");
@@ -93,6 +96,7 @@ function deactivateButtons() {
     $('.rock, .paper, .scissors').off();
     $('.overlay').animate({'opacity':0},100);
     $('.rock, .paper, .scissors').css('box-shadow','0 0 0 0 #919191');
+    $('.rock, .paper, .scissors').css('background-color', '#cacaca');
 }
 function playRock() {
     deactivateButtons();
