@@ -1,35 +1,3 @@
-/*
-When player Clicks .rock .paper or .scissors the game begins
-'play_rock' begins a game with rock as your move
-'play_paper' begins a game with paper as your move
-'play_scissors' begins a game with paper as your move
-
-variables:
-myMove
-computerMove
-
-moves correspond:
-0: rock
-1: paper
-2: scissors
-
-play _____
-generates 'myMove'
-calls 'playGame(myMove)' which handles the rest of the game:
-
-calls 'generateComputerMove()'
-if 'isWinner()' = false call 'who_won?()'
-adds tally to computer or yourself (global variables?)
-
-Need to make the narration script change to "try again pls" gradual
-Need to make an exciting well timed score update.
-Set clear background to icons
-make icons spin before they punch
-
-
-*/
-
-
 var myWins = 0;
 var compWins = 0;
 var result = 10;
@@ -37,6 +5,7 @@ var resultMessage = 0;
 var myMove = 10;
 var computerMove = 10;
 var winnersColor = 10;
+
 activateButtons();
 
 
@@ -179,11 +148,11 @@ function updateResults() {
 function fightPosition(move) {
     switch(move) {
         case 0:
-            return "rock.png";
+            return "images/rock.png";
         case 1:
-            return "paper.png";
+            return "images/paper.png";
         case 2:
-            return "scissors.png";
+            return "images/scissors.png";
     };
 }
 function fightColor(move) {

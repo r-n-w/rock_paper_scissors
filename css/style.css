@@ -4,30 +4,28 @@ body {
     color: black;
     background-color: white;
 }
-
-
 #options_container img {
     display: block;
     margin: auto;
     width: 60px;
 }
-h1, h3 {
+h1,
+h3 {
     display: block;
     width: 50%;
     margin: 30px auto 20px auto;
     text-align: center;
 }
-
-
 #options_container {
     display: flex;
     flex-direction: row;
     align-content: center;
     justify-content: center;
     margin-bottom: 20px;
-
 }
-.rock, .paper, .scissors {
+.rock,
+.paper,
+.scissors {
     display: grid;
     position: relative;
     border-radius: 40px;
@@ -52,7 +50,7 @@ h1, h3 {
     position: relative;
     left: 0;
 }
-.overlay{
+.overlay {
     position: absolute;
     top: 0;
     left: 0px;
@@ -63,7 +61,7 @@ h1, h3 {
     opacity: 0;
     border-radius: 40px;
     box-sizing: border-box;
-    transition: .2s ease;
+    transition: 0.2s ease;
 }
 .rock .overlay {
     background-color: #fa8072;
@@ -80,8 +78,6 @@ h1, h3 {
     left: 0px;
 }
 
-
-
 #fight_container {
     height: 120px;
     width: 640px;
@@ -96,7 +92,8 @@ h1, h3 {
     align-items: center;
     justify-content: center;
 }
-#my_play, #comp_play {
+#my_play,
+#comp_play {
     position: relative;
     width: 120px;
     height: 120px;
@@ -174,11 +171,6 @@ h1, h3 {
     color: black;
     z-index: 5;
 }
-
-
-
-
-
 #results {
     display: flex;
     justify-content: space-between;
@@ -194,12 +186,12 @@ h1, h3 {
     font-size: 20px;
 }
 #my_score {
-margin: 20px;
-text-align: center;
-font-size: 80px;
+    margin: 20px;
+    text-align: center;
+    font-size: 80px;
 }
 #computer_score {
-margin: 20px;
-text-align: center;
-font-size: 80px;
+    margin: 20px;
+    text-align: center;
+    font-size: 80px;
 }
